@@ -3,6 +3,7 @@ from django.test import TestCase
 
 
 class SpotifyCallerTestCase(TestCase):
+
     def setUp(self):
         super(SpotifyCallerTestCase, self).setUp()
 

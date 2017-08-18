@@ -69,6 +69,7 @@ class SpotifyOauthCaller(object):
                 raise SpotifyException(response.reason)
 
             user_session['token'] = response.json()
+            # increase expires_token time for comparing with time.time
             user_session['token']['expires_in'] += int(time.time())
             return user_session['token']['access_token']
         else:

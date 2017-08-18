@@ -21,43 +21,21 @@ Assumptions: Operators and numbers need to be separated by spaces. No validation
 ### Task 3
 Web application that uses spotify API(https://developer.spotify.com/web-api/). Allows you as authorized user to search for music.
 
-## How to run it locally in dev mode  ##
+## How to run it locally by dockerfile  ##
 
-`mkdir interview_assignments`
+Move to project catalog
 
-`cd interview_assignments`
+`cd task3/spotifypy`
 
-Clone repository
+In `environment.env` file set your `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` variable (make sure there is no spaces between `=` and variable) from registered application on spotify.
+Also, you need to set up correct `Redirect URIs` in your spotify app - `http://127.0.0.1:8000/spotify_authorize_callback/`
 
-`git clone https://github.com/ejk92/interview.git`
+Build containter
 
-Prepare virtual environment
+`docker build . -t 'spotifypy_container'`
 
-`virtualenv .`
+Run container
 
-Activate it
+`docker run -d -p 8000:8000 --env-file ./environment.env spotifypy_container`
 
-`source bin/activate`
-
-Install project dependencies
-
-`pip install -r interview/task3/requirements.txt`
-
-Configure local settings, by:
-
-`cp interview/task3/spotifypy/spotifypy/settings/local_sample.py interview/task3/spotifypy/spotifypy/settings/local.py`
-
-Edit info regarding spotify app in your `local.py`(set `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REDIRECT_URL`).
-Also, you need to set up correct `Redirect URIs` in your spotify app, the same as `SPOTIFY_REDIRECT_URL` from `local.py`.
-For development you should use `http://127.0.0.1:8000/spotify_authorize_callback/`.
-
-At the end run Django migrations by
-
-`cd interview/task3/spotifypy`
-
-`python manage.py migrate`
-
-and to run the development server
-
-`python manage.py runserver`
-
+Server is working on address `127.0.0.1:8000`
