@@ -102,3 +102,7 @@ ENV/
 
 # django
 db.*
+migrations/
+.idea/
+
+local.py

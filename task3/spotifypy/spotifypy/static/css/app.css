@@ -1,0 +1,26 @@
+#btn-search {
+    margin-left: 30px;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#search-form label {
+    margin-right: 5px;
+}
+
+#search-form input, #search-form select {
+    margin-right: 15px;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+#user-data {
+    display: flex;
+    flex-direction: column;
+}

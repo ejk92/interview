@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4 class="text-center">You're logged in. Wait for redirect to main page</h4>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    $(window).ready(function() {
+        window.location.href = "{% url 'index' %}";
+    });
+
+</script>
+{% endblock %}
