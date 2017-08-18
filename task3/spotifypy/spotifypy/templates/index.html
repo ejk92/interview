@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        {% if data %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="user-data">
+                        <img width="100px" height="100px" src="{{data.images.0.url}}" alt="User picture" />
+                        <span>Name: <a target="_blank" href="{{data.external_urls.spotify}}">{{data.display_name}}</a></span>
+                        <span>Email: {{ data.email }}</span>
+                        <span>Country: {{ data.country }}</span>
+
+
+                    </div>
+                </div>
+
+                <div class="col-sm-offset-5 col-sm-1">
+                    <a href="{% url 'spotify-logout' %}">
+                        <button class="btn btn-primary btn-action" id="btn-logout">Logout</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <form id="search-form" action="" method="get">{% csrf_token %}
+                        {{search_form.as_table}}
+                        <input type="submit" class="btn btn-primary" id="btn-search" value="Search" />
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="search-result">
+                <table class="table col-offset-sm-2 col-sm-8">
+                    <thead id="table-result-head"></thead>
+                    <tbody id="table-result-body"></tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'spotify-login' %}"><button class="btn btn-primary btn-action" id="btn-login">Login</button></a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script src="{% static 'js/app.js' %}"></script>
+
+<script>
+    $('#search-form').submit(function (e) {
+        $.get({
+            url: "{% url 'search' %}",
+            data: {
+                'query': $.param({
+                    'q': $('#id_text').val(),
+                    'type': $('#id_kind').val(),
+                    'limit': $('#id_limit').val()
+                }),
+                'kind': $('#id_kind').val()+'s'
+            },
+            success: function (data) {
+                set_data_in_table(data);
+            }
+        });
+        e.preventDefault();
+    });
+</script>
+{% endblock %}
