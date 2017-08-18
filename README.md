@@ -1,16 +1,14 @@
 # interview
 Job interview assignment
 
-## Assignments info
-
-### Task 1
+## Task 1
 To run, type in your console:
 ```
 python task1.py
 ```
 Screen shows results for test cases.
 
-### Task 2
+## Task 2
 To run, type in your console:
 ```
 python task2.py
@@ -18,10 +16,10 @@ python task2.py
 Screen shows results for test cases.
 Assumptions: Operators and numbers need to be separated by spaces. No validation expression.
 
-### Task 3
+## Task 3
 Web application that uses spotify API(https://developer.spotify.com/web-api/). Allows you as authorized user to search for music.
 
-## How to run it locally by dockerfile  ##
+### How to run it locally by dockerfile  ##
 
 Move to project catalog
 
